@@ -26,8 +26,8 @@
 var tim = (function(){
     "use strict";
 
-    var start   = "{{",
-        end     = "}}",
+    var start   = "\\${",
+        end     = "}",
         path    = "[a-z0-9_][\\.a-z0-9_]*", // e.g. config.person.name
         pattern = new RegExp(start + "\\s*("+ path +")\\s*" + end, "gi"),
         undef;
@@ -45,7 +45,7 @@ var tim = (function(){
                 
                 // Property not found
                 if (lookup === undef){
-                    throw "tim: '" + path[i] + "' not found in " + tag;
+                    return "";
                 }
                 
                 // Return the required value
